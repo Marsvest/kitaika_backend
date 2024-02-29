@@ -10,6 +10,6 @@ session = Session()
 categories = session.query(models.Category).all()
 
 for category in categories:
-    print(f"Category ID: {category.id}, Category Name: {category.category}")
+    print(f"Category ID: {category.id}, Category Name: {category.category}, {category.image_path}")
 
 session.close()

@@ -1,7 +1,8 @@
 Create Table Categories
 (
-    id       integer primary key autoincrement,
-    category text unique not null
+    id         integer primary key autoincrement,
+    category   text unique not null,
+    image_path text unique not null
 );
 
 Create Table Products

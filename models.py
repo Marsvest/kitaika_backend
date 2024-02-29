@@ -9,6 +9,7 @@ class Category(Base):
     __tablename__ = 'Categories'
     id = Column(Integer, primary_key=True, autoincrement=True)
     category = Column(String, unique=True, nullable=False)
+    image_path = Column(String, unique=True, nullable=False)
 
 
 class Product(Base):
