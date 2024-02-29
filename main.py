@@ -34,6 +34,16 @@ async def get_categories_route(categories: list = Depends(get_categories)):
     }
 
 
-@app.get("/api/getproducts")
-async def getproducts(category_id: int):
-    return
+def get_products(category_id: int, db: Session = Depends(get_db)):
+    products = db.query(models.Product).filter(models.Product.category_id == category_id).all()
+    return products
+
+
+@app.get("/api/getproducts/{category_id}")
+async def get_products_route(category_id: int, products: list = Depends(get_products)):
+    return {
+        "category_id": category_id,
+        "products": [
+            {"label": product.label, "price": product.price, "about": product.about, "image_path": product.image_path,
+             "calories": product.calories} for product in products]
+    }
