@@ -35,7 +35,7 @@ info: дополнительная информация к заказу
 address: адрес доставки
 take_type: тип выдачи (delivery/pickup) (доставка/самовывоз)
 payment_type: тип оплаты (cash/card/online) (наличка/карта/онлайн)
-status: статус заказа (in queue/cooking/done) (в очереди/готовится/готов к выдаче)
+status: статус заказа (in queue/cooking/done/taked) (в очереди/готовится/готов к выдаче/забрали)
 ```
 
 ## Passwords
