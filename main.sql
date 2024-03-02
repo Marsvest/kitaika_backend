@@ -41,3 +41,13 @@ Create Table Orders
     payment_type text check ( payment_type in ('cash', 'card', 'online') ),
     status       text check ( status in ('in queue', 'cooking', 'done') )
 );
+
+-- Create Table Promo
+-- (
+--     id         integer primary key autoincrement,
+--     image_path text unique not null,
+--     product_id integer     not null,
+--     foreign key (product_id) references Products (id)
+-- );
+
+Select

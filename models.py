@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Text
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Text, CheckConstraint
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -13,7 +13,6 @@ class Category(Base):
 
 
 class Product(Base):
-
     __tablename__ = 'Products'
     id = Column(Integer, primary_key=True, autoincrement=True)
     label = Column(String, unique=True, nullable=False)
@@ -25,7 +24,7 @@ class Product(Base):
     calories = Column(Integer)
 
 
-class OrderItem(Base):
+class OrderItems(Base):
     __tablename__ = 'OrderItems'
     id = Column(Integer, primary_key=True, autoincrement=True)
     order_id = Column(Integer, nullable=False)
@@ -34,11 +33,11 @@ class OrderItem(Base):
     price = Column(Integer, nullable=False)
 
 
-class Order(Base):
+class Orders(Base):
     __tablename__ = 'Orders'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    ordered_time = Column(DateTime, nullable=False)
-    last_time = Column(DateTime, nullable=False)
+    ordered_time = Column(String, nullable=False)
+    last_time = Column(String, nullable=False)
     phone_number = Column(String, nullable=False)
     name = Column(String, nullable=False)
     info = Column(Text, nullable=False)

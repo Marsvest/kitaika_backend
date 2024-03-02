@@ -1,15 +1,16 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import models
+from datetime import datetime
 
-
-engine = create_engine('sqlite:///C:/Users/mrart/DataGripProjects/kitaika/identifier.sqlite')  # Use your database URL here
+engine = create_engine('sqlite:///kitaika.db')  # Use your database URL here
 Session = sessionmaker(bind=engine)
 session = Session()
 
-categories = session.query(models.Category).all()
+categories = session.query(models.Orders).all()
 
 for category in categories:
-    print(f"Category ID: {category.id}, Category Name: {category.category}, {category.image_path}")
+    print(category.ordered_time)
+    print(datetime.fromtimestamp(category.ordered_time/1000))
 
 session.close()
