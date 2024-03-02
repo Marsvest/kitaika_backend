@@ -21,6 +21,22 @@ about: описание товара
 image_path: ссылка на картинку
 calories: калории в товаре
 ```
+### GetOrders (now working)
+```
+http://kitaika39.ru:8000/api/getorders
+```
+Получает все заказы
+```
+ordered_time: время оформление заказа
+last_time: время, на которое сделан заказ
+phone_number: номер телефона
+name: имя
+info: дополнительная информация к заказу
+address: адрес доставки
+take_type: тип выдачи (delivery/pickup) (доставка/самовывоз)
+payment_type: тип оплаты (cash/card/online) (наличка/карта/онлайн)
+status: статус заказа (in queue/cooking/done) (в очереди/готовится/готов к выдаче)
+```
 
 ## Passwords
 ### mail.ru
