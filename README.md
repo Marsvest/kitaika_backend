@@ -36,7 +36,7 @@ address: адрес доставки
 take_type: тип выдачи (delivery/pickup) (доставка/самовывоз)
 payment_type: тип оплаты (cash/card/online) (наличка/карта/онлайн)
 status: статус заказа (in queue/cooking/done/taked) (в очереди/готовится/готов к выдаче/забрали)
-items: массив, содержащий поля метода '''GetItems'''
+items: массив, содержащий поля метода GetItems()
 ```
 
 ## Passwords
