@@ -39,7 +39,7 @@ Create Table Orders
     address      text     not null,
     take_type    text check ( take_type in ('delivery', 'pickup') ),
     payment_type text check ( payment_type in ('cash', 'card', 'online') ),
-    status       text check ( status in ('in queue', 'cooking', 'done') )
+    status       text check ( status in ('in queue', 'cooking', 'done', 'taked') )
 );
 
 -- Create Table Promo
@@ -49,5 +49,3 @@ Create Table Orders
 --     product_id integer     not null,
 --     foreign key (product_id) references Products (id)
 -- );
-
-Select
