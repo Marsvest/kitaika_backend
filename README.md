@@ -21,7 +21,7 @@ about: описание товара
 image_path: ссылка на картинку
 calories: калории в товаре
 ```
-### GetOrders (not working)
+### GetOrders
 ```
 http://kitaika39.ru:8000/api/getorders
 ```
