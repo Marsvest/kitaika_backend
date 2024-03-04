@@ -19,11 +19,13 @@ Create Table Products
 
 Create Table OrderItems
 (
-    id         integer primary key autoincrement,
-    order_id   integer not null,
-    product_id integer not null,
-    count      integer not null,
-    price      integer not null,
+    id           integer primary key autoincrement,
+    order_id     integer not null,
+    product_id   integer not null,
+    count        integer not null,
+    price        integer not null,
+    single_price integer not null,
+    foreign key (single_price) references Products (price),
     foreign key (order_id) references Orders (id),
     foreign key (product_id) references Products (id)
 );
@@ -39,7 +41,8 @@ Create Table Orders
     address      text     not null,
     take_type    text check ( take_type in ('delivery', 'pickup') ),
     payment_type text check ( payment_type in ('cash', 'card', 'online') ),
-    status       text check ( status in ('in queue', 'cooking', 'done', 'taked') )
+    status       text check ( status in ('in queue', 'cooking', 'done', 'taked') ),
+    total_price  integer  not null
 );
 
 -- Create Table Promo

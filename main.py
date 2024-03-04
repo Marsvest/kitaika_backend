@@ -95,7 +95,7 @@ def get_items_by_order(order_id: int, db: Session = Depends(get_db)):
 
 def get_product_by_id(product_id: int, db: Session = Depends(get_db)):
     products = db.query(models.Product).filter(models.Product.id == product_id).all()
-    return products
+    return products[0]
 
 
 @app.get("/api/getorders/")
@@ -120,7 +120,7 @@ async def get_orders_route(orders: list = Depends(get_orders_all), db: Session =
                         "product_id": item.product_id,
                         "count": item.count,
                         "price": item.price,
-                        "product": get_product_by_id(item.id, db)[0]
+                        "product": get_product_by_id(item.product_id, db)[0]
                     }
                     for item in get_items_by_order(order.id, db)]
             }
@@ -129,7 +129,7 @@ async def get_orders_route(orders: list = Depends(get_orders_all), db: Session =
 
 
 @app.get("/api/getitems/{order_id}")
-def get_items_route(order_id: int, items: list = Depends(get_items_by_order)):
+def get_items_route(order_id: int, items: list = Depends(get_items_by_order), db: Session = Depends(get_db)):
     return {
         "order_id": order_id,
         "items": [
@@ -137,7 +137,44 @@ def get_items_route(order_id: int, items: list = Depends(get_items_by_order)):
                 "id": item.id,
                 "product_id": item.product_id,
                 "count": item.count,
-                "price": item.price
+                "price": item.price,
+                "product": get_product_by_id(item.product_id, db)
             }
             for item in items]
+    }
+
+
+@app.post("/api/createorder/")
+async def create_order_route(order: models.OrderCreate):
+    ordered_time = str(int(datetime.now().timestamp() * 1000))
+    # Сумма заказа отсутсвует
+    total_price = 0
+    db_order = models.Orders(**order.model_dump(), ordered_time=ordered_time, status="in queue",
+                             total_price=total_price)
+
+    with Session() as session:
+        session.add(db_order)
+        session.commit()
+        session.refresh(db_order)
+
+    return {
+        "message": "Order created successfully",
+        "order_id": db_order.id
+    }
+
+
+@app.post("/api/addtocart")
+async def add_to_cart_route(order: models.OrderItemsUpdate, db: Session = Depends(get_db)):
+    single_price = get_product_by_id(order.product_id, db).price
+    price = single_price * order.count
+    db_orderitems = models.OrderItems(**order.model_dump(), price=price, single_price=single_price)
+
+    with Session() as session:
+        session.add(db_orderitems)
+        session.commit()
+        session.refresh(db_orderitems)
+
+    return {
+        "message": "Order created successfully",
+        "item_id": db_orderitems.id
     }

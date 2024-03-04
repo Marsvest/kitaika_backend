@@ -1,6 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Text, CheckConstraint
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from pydantic import BaseModel
 
 Base = declarative_base()
 
@@ -31,6 +32,7 @@ class OrderItems(Base):
     product_id = Column(Integer, nullable=False)
     count = Column(Integer, nullable=False)
     price = Column(Integer, nullable=False)
+    single_price = Column(Integer, nullable=False)
 
 
 class Orders(Base):
@@ -45,3 +47,20 @@ class Orders(Base):
     take_type = Column(String, nullable=False)
     payment_type = Column(String, nullable=False)
     status = Column(String, nullable=False)
+    total_price = Column(Integer, nullable=False)
+
+
+class OrderCreate(BaseModel):
+    last_time: str
+    phone_number: str
+    name: str
+    info: str
+    address: str
+    take_type: str
+    payment_type: str
+
+
+class OrderItemsUpdate(BaseModel):
+    order_id: int
+    product_id: int
+    count: int
