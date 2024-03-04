@@ -63,6 +63,8 @@ info: дополнительная информация к заказу
 address: адрес доставки
 take_type: тип выдачи (delivery/pickup) (доставка/самовывоз)
 payment_type: тип оплаты (cash/card/online) (наличка/карта/онлайн)
+Возвращает:
+order_id: айди заказа
 ```
 
 ## Passwords
