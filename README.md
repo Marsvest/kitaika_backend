@@ -38,6 +38,17 @@ payment_type: тип оплаты (cash/card/online) (наличка/карта/
 status: статус заказа (in queue/cooking/done/taked) (в очереди/готовится/готов к выдаче/забрали)
 items: массив, содержащий поля метода GetItems()
 ```
+### GetItems
+```
+http://kitaika39.ru:8000/api/getitems/{order_id}
+```
+Получает товары в выбранном заказе
+```
+product_id: айди продукта 
+count: количество продуктов данного типа в заказе
+price: суммарная цена продуктов данного типа
+product: массив, содержащий поля метода GetProducts()
+```
 
 ## Passwords
 ### mail.ru
