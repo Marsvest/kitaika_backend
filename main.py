@@ -175,6 +175,21 @@ async def add_to_cart_route(order: models.OrderItemsUpdate, db: Session = Depend
         session.refresh(db_orderitems)
 
     return {
-        "message": "Order created successfully",
+        "message": "Item added successfully",
         "item_id": db_orderitems.id
+    }
+
+
+@app.post("/api/createproduct")
+async def add_product_route(product: models.ProductCreate):
+    db_product = models.Product(**product.model_dump())
+
+    with Session() as session:
+        session.add(db_product)
+        session.commit()
+        session.refresh(db_product)
+
+    return {
+        "message": "Product created successfully",
+        "item_id": db_product.id
     }

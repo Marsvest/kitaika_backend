@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Text, CheckConstraint
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
@@ -50,6 +50,14 @@ class Orders(Base):
     total_price = Column(Integer, nullable=False)
 
 
+class Users(Base):
+    __tablename__ = 'Users'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    login = Column(String, nullable=False, unique=True)
+    password = Column(String, nullable=False)
+    is_admin = Column(Boolean, nullable=False)
+
+
 class OrderCreate(BaseModel):
     last_time: str
     phone_number: str
@@ -64,3 +72,12 @@ class OrderItemsUpdate(BaseModel):
     order_id: int
     product_id: int
     count: int
+
+
+class ProductCreate(BaseModel):
+    label: str
+    price: int
+    category_id: int
+    about: str
+    image_path: str
+    calories: int

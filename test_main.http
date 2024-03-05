@@ -1,3 +1,16 @@
+POST http://localhost:8000/api/createproduct
+Content-Type: application/json
+
+{
+  "label": "Тестовый продукт",
+  "price": 800,
+  "category_id": 2,
+  "about": "тестетстс",
+  "image_path": "path1231230",
+  "calories": 300
+}
+
+###
 POST http://localhost:8000/api/addtocart/
 Content-Type: application/json
 

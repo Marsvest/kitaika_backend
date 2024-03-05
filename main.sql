@@ -52,3 +52,11 @@ Create Table Orders
 --     product_id integer     not null,
 --     foreign key (product_id) references Products (id)
 -- );
+
+Create Table Users
+(
+    id       integer primary key autoincrement,
+    login    text unique not null,
+    password text        not null,
+    is_admin boolean     not null
+);
