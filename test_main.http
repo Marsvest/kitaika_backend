@@ -40,16 +40,5 @@ GET http://localhost:8000/api/getitems/8
 Accept: application/json
 
 ###
-POST http://localhost:8000/api/createorder/
+POST http://localhost:8000/api/orderinit
 Content-Type: application/json
-
-{
-  "last_time": "1",
-  "phone_number": "1",
-  "name": "1",
-  "info": "1",
-  "address": "1",
-  "take_type": "delivery",
-  "payment_type": "cash"
-}
-
