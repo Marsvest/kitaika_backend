@@ -114,6 +114,8 @@ async def get_orders_route(orders: list = Depends(get_orders_all), db: Session =
                 "take_type": order.take_type,
                 "payment_type": order.payment_type,
                 "status": order.status,
+                "confirmend": order.confirmed,
+                "total_price": order.total_price,
                 "items": [
                     {
                         "id": item.id,
