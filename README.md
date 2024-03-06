@@ -6,6 +6,7 @@ http://kitaika39.ru:8000/api/getcategories/
 ```
 Получает категории для наполнения меню
 ```
+Возвращает:
 name: название категории
 image_path: ссылка на картинку
 ```
@@ -15,6 +16,7 @@ http://kitaika39.ru:8000/api/getproducts/{category_id}
 ```
 Получает товары в выбранной категории
 ```
+Возвращает:
 label: название товара
 price: цена товара
 about: описание товара
@@ -27,6 +29,7 @@ http://kitaika39.ru:8000/api/getorders/
 ```
 Получает все заказы
 ```
+Возвращает:
 ordered_time: время оформление заказа
 last_time: время, на которое сделан заказ
 phone_number: номер телефона
@@ -44,16 +47,17 @@ http://kitaika39.ru:8000/api/getitems/{order_id}
 ```
 Получает товары в выбранном заказе
 ```
+Возвращает:
 product_id: айди продукта 
 count: количество продуктов данного типа в заказе
 price: суммарная цена продуктов данного типа
 product: массив, содержащий поля метода GetProducts()
 ```
-### CreateOrder (POST)
+### UpdateOrder (PUT)
 ```
-http://kitaika39.ru:8000/api/createorder/
+http://kitaika39.ru:8000/api/updateorder/{order_id}
 ```
-Создает заказ и возвращает его айди
+Подтверждает заказ и возвращает его айди
 ```
 Необходимые параметры:
 last_time: время, на которое сделан заказ
@@ -68,6 +72,12 @@ payment_type: тип оплаты (cash/card/online) (наличка/карта/
 Возвращает:
 order_id: айди заказа
 ```
+### OrderInit (GET)
+```
+http://kitaika39.ru:8000/api/addtocart
+```
+Инициализирует новый заказ (чтобы потом добавлять товары) и возвращает его айди
+
 ### AddToCart (POST)
 ```
 http://kitaika39.ru:8000/api/addtocart
