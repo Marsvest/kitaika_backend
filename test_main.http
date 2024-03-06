@@ -2,13 +2,13 @@ PUT http://localhost:8000/api/updateorder/1
 Content-Type: application/json
 
 {
-  "last_time": "1",
-  "phone_number": "1",
-  "name": "1",
-  "info": "1",
-  "address": "11211",
-  "take_type": "delivery",
-  "payment_type": "cash"
+  "last_time": "10000",
+  "phone_number": "+7800553535",
+  "name": "Илья Обухов",
+  "info": "налейте мне соуса побольше пжл",
+  "address": "Державина 100",
+  "take_type": "pickup",
+  "payment_type": "card"
 }
 
 

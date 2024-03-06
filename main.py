@@ -11,8 +11,8 @@ engine = create_engine(
 Session = sessionmaker(bind=engine)
 
 origins = [
-    "http://localhost",
-    "http://localhost:8000",
+    "http://kitaika39.ru",
+    "https://kitaika39.ru",
 ]
 
 app.add_middleware(
@@ -120,7 +120,7 @@ async def get_orders_route(orders: list = Depends(get_orders_all), db: Session =
                         "product_id": item.product_id,
                         "count": item.count,
                         "price": item.price,
-                        "product": get_product_by_id(item.product_id, db)[0]
+                        "product": get_product_by_id(item.product_id, db)
                     }
                     for item in get_items_by_order(order.id, db)]
             }
@@ -144,28 +144,11 @@ def get_items_route(order_id: int, items: list = Depends(get_items_by_order), db
     }
 
 
-@app.post("/api/createorder/")
-async def create_order_route(order: models.OrderCreate):
-    ordered_time = str(int(datetime.now().timestamp() * 1000))
-    # Сумма заказа отсутсвует
-    total_price = 0
-    db_order = models.Orders(**order.model_dump(), ordered_time=ordered_time, status="in queue",
-                             total_price=total_price)
-
-    with Session() as session:
-        session.add(db_order)
-        session.commit()
-        session.refresh(db_order)
-
-    return {
-        "message": "Order created successfully",
-        "order_id": db_order.id
-    }
-
-
 @app.put("/api/updateorder/{order_id}")
 async def update_order_route(order_id: int, updated_order: models.OrderUpdate,
                              items: list = Depends(get_items_by_order)):
+    ordered_time = str(int(datetime.now().timestamp() * 1000))
+
     with Session() as session:
         db_order = session.query(models.Orders).filter(models.Orders.id == order_id).first()
 
@@ -177,6 +160,7 @@ async def update_order_route(order_id: int, updated_order: models.OrderUpdate,
 
         setattr(db_order, "total_price", sum(i.price for i in items))
         setattr(db_order, "confirmed", 1)
+        setattr(db_order, "ordered_time", ordered_time)
 
         session.commit()
         session.refresh(db_order)
