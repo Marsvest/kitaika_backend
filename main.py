@@ -163,6 +163,47 @@ async def create_order_route(order: models.OrderCreate):
     }
 
 
+@app.put("/api/updateorder/{order_id}")
+async def update_order_route(order_id: int, updated_order: models.OrderUpdate,
+                             items: list = Depends(get_items_by_order)):
+    with Session() as session:
+        db_order = session.query(models.Orders).filter(models.Orders.id == order_id).first()
+
+        if db_order is None:
+            raise HTTPException(status_code=404, detail="Order not found")
+
+        for field, value in updated_order.model_dump().items():
+            setattr(db_order, field, value)
+
+        setattr(db_order, "total_price", sum(i.price for i in items))
+        setattr(db_order, "confirmed", 1)
+
+        session.commit()
+        session.refresh(db_order)
+
+    return {
+        "message": "Order updated successfully",
+        "order_id": db_order.id
+    }
+
+
+@app.get("/api/orderinit")
+async def order_init_route(order: models.OrderInit):
+    db_order = models.Orders(**order.model_dump(), ordered_time="0", last_time="0", status="in queue",
+                             phone_number="0", name="0", address="0", take_type="delivery", payment_type="cash",
+                             total_price=0, info="0", confirmed=False)
+
+    with Session() as session:
+        session.add(db_order)
+        session.commit()
+        session.refresh(db_order)
+
+    return {
+        "message": "Order created successfully",
+        "order_id": db_order.id
+    }
+
+
 @app.post("/api/addtocart")
 async def add_to_cart_route(order: models.OrderItemsUpdate, db: Session = Depends(get_db)):
     single_price = get_product_by_id(order.product_id, db).price

@@ -47,6 +47,7 @@ class Orders(Base):
     take_type = Column(String, nullable=False)
     payment_type = Column(String, nullable=False)
     status = Column(String, nullable=False)
+    confirmed = Column(Boolean, nullable=False)
     total_price = Column(Integer, nullable=False)
 
 
@@ -58,7 +59,21 @@ class Users(Base):
     is_admin = Column(Boolean, nullable=False)
 
 
+class OrderInit(BaseModel):
+    pass
+
+
 class OrderCreate(BaseModel):
+    last_time: str
+    phone_number: str
+    name: str
+    info: str
+    address: str
+    take_type: str
+    payment_type: str
+
+
+class OrderUpdate(BaseModel):
     last_time: str
     phone_number: str
     name: str

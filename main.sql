@@ -42,7 +42,17 @@ Create Table Orders
     take_type    text check ( take_type in ('delivery', 'pickup') ),
     payment_type text check ( payment_type in ('cash', 'card', 'online') ),
     status       text check ( status in ('in queue', 'cooking', 'done', 'taked') ),
+    confirmed    boolean  not null,
     total_price  integer  not null
+);
+
+
+Create Table Users
+(
+    id       integer primary key autoincrement,
+    login    text unique not null,
+    password text        not null,
+    is_admin boolean     not null
 );
 
 -- Create Table Promo
@@ -52,11 +62,3 @@ Create Table Orders
 --     product_id integer     not null,
 --     foreign key (product_id) references Products (id)
 -- );
-
-Create Table Users
-(
-    id       integer primary key autoincrement,
-    login    text unique not null,
-    password text        not null,
-    is_admin boolean     not null
-);

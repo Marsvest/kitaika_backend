@@ -1,3 +1,18 @@
+PUT http://localhost:8000/api/updateorder/1
+Content-Type: application/json
+
+{
+  "last_time": "1",
+  "phone_number": "1",
+  "name": "1",
+  "info": "1",
+  "address": "11211",
+  "take_type": "delivery",
+  "payment_type": "cash"
+}
+
+
+###
 POST http://localhost:8000/api/createproduct
 Content-Type: application/json
 
