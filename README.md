@@ -72,7 +72,7 @@ payment_type: тип оплаты (cash/card/online) (наличка/карта/
 Возвращает:
 order_id: айди заказа
 ```
-### OrderInit (GET)
+### OrderInit (POST)
 ```
 http://kitaika39.ru:8000/api/addtocart
 ```
