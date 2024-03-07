@@ -54,7 +54,9 @@ Accept: application/json
 }
 
 ###
-GET http://kitaika39.ru:8000/api/orderinit
+POST http://localhost:8000/api/orderinit
 Content-Type: application/json
 
-{}
+{
+f
+}

@@ -173,7 +173,7 @@ async def update_order_route(order_id: int, updated_order: models.OrderUpdate,
     }
 
 
-@app.get("/api/orderinit")
+@app.post("/api/orderinit")
 async def order_init_route(order: models.OrderInit):
     db_order = models.Orders(**order.model_dump(), ordered_time="0", last_time="0", status="in queue",
                              phone_number="0", name="0", address="0", take_type="delivery", payment_type="cash",
