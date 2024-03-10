@@ -17,6 +17,7 @@ https://kitaika39.ru/api/getproducts/{category_id}
 Получает товары в выбранной категории
 ```
 Возвращает:
+product_id: айди продукта
 label: название товара
 price: цена товара
 about: описание товара
