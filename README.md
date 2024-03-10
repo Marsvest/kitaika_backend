@@ -2,7 +2,7 @@
 ## Methods
 ### GetCategories (GET)
 ```
-http://kitaika39.ru:8000/api/getcategories/
+https://kitaika39.ru/api/getcategories/
 ```
 Получает категории для наполнения меню
 ```
@@ -12,7 +12,7 @@ image_path: ссылка на картинку
 ```
 ### GetProducts (GET)
 ```
-http://kitaika39.ru:8000/api/getproducts/{category_id}
+https://kitaika39.ru/api/getproducts/{category_id}
 ```
 Получает товары в выбранной категории
 ```
@@ -25,7 +25,7 @@ calories: калории в товаре
 ```
 ### GetOrders (GET)
 ```
-http://kitaika39.ru:8000/api/getorders/
+https://kitaika39.ru/api/getorders/
 ```
 Получает все заказы
 ```
@@ -43,7 +43,7 @@ items: массив, содержащий поля метода GetItems()
 ```
 ### GetItems (GET)
 ```
-http://kitaika39.ru:8000/api/getitems/{order_id}
+https://kitaika39.ru/api/getitems/{order_id}
 ```
 Получает товары в выбранном заказе
 ```
@@ -55,7 +55,7 @@ product: массив, содержащий поля метода GetProducts()
 ```
 ### UpdateOrder (PUT)
 ```
-http://kitaika39.ru:8000/api/updateorder/{order_id}
+https://kitaika39.ru/api/updateorder/{order_id}
 ```
 Подтверждает заказ и возвращает его айди
 ```
@@ -74,7 +74,7 @@ order_id: айди заказа
 ```
 ### OrderInit (POST)
 ```
-http://kitaika39.ru:8000/api/addtocart
+https://kitaika39.ru/api/addtocart
 ```
 Инициализирует новый заказ (чтобы потом добавлять товары) и возвращает его айди
 ```
@@ -84,7 +84,7 @@ order_id: айди заказа
 
 ### AddToCart (POST)
 ```
-http://kitaika39.ru:8000/api/addtocart
+https://kitaika39.ru/api/addtocart
 ```
 Добавляет товары к корзине
 ```
@@ -99,7 +99,7 @@ item_id: айди нового предмета
 ```
 ### CreateProduct (POST)
 ```
-http://kitaika39.ru:8000/api/createproduct
+https://kitaika39.ru/api/createproduct
 ```
 Создает новый товар
 ```
