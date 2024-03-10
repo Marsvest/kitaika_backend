@@ -2,13 +2,13 @@ POST http://kitaika39.ru:8000/api/addtocart
 Content-Type: application/json
 
 {
-  "order_id": 4,
+  "order_id": 1,
   "product_id": 1,
   "count": 1
 }
 
 ###
-PUT http://localhost:8000/api/updateorder/1
+PUT http://kitaika39.ru:8000/api/updateorder/1
 Content-Type: application/json
 
 {
@@ -50,13 +50,11 @@ POST http://localhost:8000/api/addtocart/
 Accept: application/json
 
 {
-"order_id":
+"order_id": 2
 }
 
 ###
 POST http://localhost:8000/api/orderinit
 Content-Type: application/json
 
-{
-f
-}
+{}

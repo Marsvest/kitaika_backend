@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import models
 from datetime import datetime
+from starlette.responses import JSONResponse
 
 app = FastAPI()
 engine = create_engine(
@@ -184,10 +185,13 @@ async def order_init_route(order: models.OrderInit):
         session.commit()
         session.refresh(db_order)
 
-    return {
+    response = JSONResponse({
         "message": "Order created successfully",
         "order_id": db_order.id
-    }
+    })
+
+    response.set_cookie("order_id", str(db_order.id))
+    return response
 
 
 @app.post("/api/addtocart")
