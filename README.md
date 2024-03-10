@@ -74,7 +74,7 @@ order_id: айди заказа
 ```
 ### OrderInit (POST)
 ```
-https://kitaika39.ru/api/addtocart
+https://kitaika39.ru/api/orderinit
 ```
 Инициализирует новый заказ (чтобы потом добавлять товары) и возвращает его айди
 ```
