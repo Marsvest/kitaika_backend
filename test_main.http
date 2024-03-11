@@ -52,9 +52,3 @@ Accept: application/json
 {
 "order_id": 2
 }
-
-###
-POST http://localhost:8000/api/orderinit
-Content-Type: application/json
-
-{}

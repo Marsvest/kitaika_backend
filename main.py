@@ -89,6 +89,11 @@ def get_orders_all(db: Session = Depends(get_db)):
     return orders
 
 
+def get_orders_confirmed(db: Session = Depends(get_db)):
+    orders = db.query(models.Orders).filter(models.Orders.confirmed == 1).all()
+    return orders
+
+
 def get_items_by_order(order_id: int, db: Session = Depends(get_db)):
     items = db.query(models.OrderItems).filter(models.OrderItems.order_id == order_id).all()
     return items
@@ -99,8 +104,40 @@ def get_product_by_id(product_id: int, db: Session = Depends(get_db)):
     return products[0]
 
 
-@app.get("/api/getorders/")
+@app.get("/api/getordersold/")
 async def get_orders_route(orders: list = Depends(get_orders_all), db: Session = Depends(get_db)):
+    return {
+        "orders_count": len(orders),
+        "orders": [
+            {
+                "order_id": order.id,
+                "ordered_time": parse_time(order.ordered_time),
+                "last_time": parse_time(order.last_time),
+                "phone_number": order.phone_number,
+                "name": order.name,
+                "info": order.info,
+                "address": order.address,
+                "take_type": order.take_type,
+                "payment_type": order.payment_type,
+                "status": order.status,
+                "confirmend": order.confirmed,
+                "total_price": order.total_price,
+                "items": [
+                    {
+                        "id": item.id,
+                        "product_id": item.product_id,
+                        "count": item.count,
+                        "price": item.price,
+                        "product": get_product_by_id(item.product_id, db)
+                    }
+                    for item in get_items_by_order(order.id, db)]
+            }
+            for order in orders]
+    }
+
+
+@app.get("/api/getorders/")
+async def get_orders_route(orders: list = Depends(get_orders_confirmed), db: Session = Depends(get_db)):
     return {
         "orders_count": len(orders),
         "orders": [
