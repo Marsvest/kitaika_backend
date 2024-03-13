@@ -40,9 +40,9 @@ POST http://localhost:8000/api/addtocart/
 Content-Type: application/json
 
 {
-  "order_id": "8",
+  "order_id": "1",
   "product_id": "2",
-  "count": "3"
+  "count": "1"
 }
 
 ###
