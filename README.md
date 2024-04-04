@@ -116,13 +116,3 @@ calories: калории
 Возвращает:
 item_id: айди товара
 ```
-
-## Passwords
-### mail.ru
-kitaika39@mail.ru
-
-UYoATun9b3x}
-### reg.ru
-kitaika39@mail.ru
-
-3!gCOD2i
